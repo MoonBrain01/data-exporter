@@ -1,0 +1,4 @@
+activate.cmd
+.vscode/
+test/
+venv/

@@ -1,0 +1,5 @@
+﻿dummy,trial,xml,frequency,export_format,destination
+"dummy","HOCI","S:\_SLMS\CTU_IT_SOFTWARE\Data\HOCI\HOCI-Monday-Weekly.xml","mon","csv","C:\Users\rehbgap\Documents\DE\test\HOCI\"
+"dummy","HOCI","S:\_SLMS\CTU_IT_SOFTWARE\Data\HOCI\HOCI-Wednesday-Weekly.xml","wed","csv","C:\Users\rehbgap\Documents\DE\test\HOCI\"
+"dummy","HOCI","S:\_SLMS\CTU_IT_SOFTWARE\Data\HOCI\HOCI-Friday-Weekly.xml","fri","csv","C:\Users\rehbgap\Documents\DE\test\HOCI\"
+
