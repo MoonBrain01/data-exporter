@@ -1,4 +1,5 @@
 activate.cmd
+test.py
 .vscode/
 test/
 venv/
