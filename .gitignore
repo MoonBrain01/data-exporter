@@ -3,3 +3,4 @@ test.py
 .vscode/
 test/
 venv/
+_logs/
