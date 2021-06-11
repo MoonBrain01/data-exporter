@@ -1,17 +1,22 @@
 import subprocess
 import sys
 import time
-from PIL.ImageOps import grayscale
-import pyautogui
 import csv
 import os
 import datetime
-import logging
+from argparse import ArgumentParser
 
+import pyautogui
+from PIL.ImageOps import grayscale
 pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 1
 
+import logging
 logging.basicConfig(filename='.\_logs\DE'+datetime.datetime.now().strftime("_%G-%m-%d")+'.log', filemode='w',format='%(asctime)s - %(message)s',level=logging.INFO)
+
+
+
+
 
 def screen_wait(ssname, required=True, search_time=10):
     result = pyautogui.locateOnScreen(ssname,minSearchTime=search_time, grayscale=True)
@@ -19,12 +24,16 @@ def screen_wait(ssname, required=True, search_time=10):
         raise pyautogui.ImageNotFoundException
     return result
 
+
 def open_xml(xml_file):
+    # Open the DE XML file in the DE application
     pyautogui.press('alt')
     pyautogui.press('f')
     pyautogui.press('o')
+    # Wait for the Open File dialog to appear
     screen_wait(r".\screenshot\DE_open.png")
 
+    # "Type" the XML file path and name into the File Name field and "press" Enter
     pyautogui.write(xml_file)
     pyautogui.press('enter')
     return
@@ -115,4 +124,16 @@ def main():
     return
 
 if __name__ == '__main__':
-    main()
+    # Code for processing command-line arguments
+    # Copied from https://srcco.de/posts/writing-python-command-line-scripts.html
+    
+    parser = ArgumentParser(description=__doc__)
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-v', '--verbose', help='Verbose (debug) logging', action='store_const', const=logging.DEBUG,
+                       dest='loglevel')
+    group.add_argument('-q', '--quiet', help='Silent mode, only log warnings', action='store_const',
+                       const=logging.WARN, dest='loglevel')
+    parser.add_argument('--dry-run', help='Noop, do not write anything', action='store_true')
+    parser.add_argument('config', nargs='+', help='Configuation File')
+    args = parser.parse_args()
+    main(args)
